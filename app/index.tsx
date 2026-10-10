@@ -104,7 +104,7 @@ export default function Home() {
       {!selected && (screen === 'success' || screen === 'tracking') && <OrderStatusScreen order={screen === 'success' ? lastOrder : lastOrder || orders[0] || null} onBack={() => navigate('home')} onAccount={() => navigate('account')} />}
       {!selected && screen === 'account' && <AccountScreen user={user} orders={orders} onAuth={auth} onSignOut={() => blink.auth.signOut()} onNavigate={name => navigate(name as AppScreen)} onAdmin={() => navigate('admin')} />}
       {!selected && ['admin', 'inventory', 'sales', 'notifications', 'settings', 'about'].includes(screen) && <BusinessScreen screen={screen} products={products} orders={orders} notifications={notificationsQuery.data || []} onBack={() => navigate('account')} onNavigate={navigate} />}
-      {notice && screen !== 'checkout' && <XStack position="absolute" top={10} left="$4" right="$4" backgroundColor={GREEN} padding="$3" borderRadius="$4" zIndex={5}><SizableText color="#FFFFFF" size="$3" fontWeight="700">{notice}</SizableText></XStack>}
+      {notice.length > 0 && screen !== 'checkout' && <XStack position="absolute" top={10} left="$4" right="$4" backgroundColor={GREEN} padding="$3" borderRadius="$4" zIndex={5}><SizableText color="#FFFFFF" size="$3" fontWeight="700">{notice}</SizableText></XStack>}
     </YStack>
     {!selected && <YStack width="100%" maxWidth={1100}><BottomNavigation active={screen} cartCount={cartCount} onNavigate={navigate} /></YStack>}
     {Platform.OS === 'web' ? <SizableText position="absolute" bottom={72} right={18} color="#839086" size="$1">MKN Agro Business · FC / USD</SizableText> : null}
